@@ -1,0 +1,21 @@
+a) It requires one base register and one limit register and ALU support to add and compare. Memory allocation is done by searching a linked list of free spaces. No extra memory look-ups required while address translation.
+
+
+b) One page table(an array of strutures) with 2^52 entries is required for each process, it is stored in main memory. Two extra registers required to store base and size of pagetable. Memory allocation is done using a bit-map. One extra look-up.
+   52 bit virtual page numbers map to 20 bit physical frame number. 
+
+c) One segment table(an array of strutures) for each process is required. Assuming atmost eight segments for a process, we need only 3 bits for the segment id, remaining 61 bits contains offset which on proper addition to base gives 32 bit physical address.
+   It requires one base register and one limit register and ALU support to add and compare. Memory allocation is done by searching a linked list of free spaces.
+   No extra memory look-ups required while address translation if segment table is stored in registers. 
+   One extra memory look-up if segment table is stored in main memory, one STBR is needed in this case. 
+
+d) Assuming 7-9-9-9-9-9-12 division of each virtual address, each process requires atmost 2^52 - 2^7 + 1 pagetables. Each pagetable is an array of structures. All these are not active, we allocate space for them only when they are active, this helps us reduce sparsity of the pagetable.
+   6 extra look-ups for each address translation. One register to store the base ptr to first pagetable.  Memory allocation is done using a bit-map. 
+
+e) Assuming 3-8-8-8-8-8-9-12 division of virtrual address, each process requires one segment table and atmost 2^51 - 2^3 +1 pagetables. Each pagetable is an array of structures.  All these are not active, we allocate space for them only when they are active, this helps us reduce sparsity of the pagetable.
+   The segment table is modt likely stored in registers. 6 extra look-ups for each address translation. Memory allocation is done using a bit-map.
+
+f) Unlike above paging methods, in hashtable paging the pagetable size is a function of physical memory size. Each pagetable is an array of structures. Each process requires a hashtable. Many virtual pages are mappped to the same location of pagetable in which we search the list of addresses present. Time for this searching is more comapred 
+   to above methods but the number of memory accesses are reduced compared to the multilevel paging. Memory allocation is done using a bit-map.
+
+g) Only one pagetable for all processes.The pagetable is an array of structures.The pid of process and virtual address to which a frame is mapped is stored in the pagetable entry corresponding to a frame. Search time is high. Number of memory accesses is also more but pagetable is small. Memory allocation is done using a bit-map.

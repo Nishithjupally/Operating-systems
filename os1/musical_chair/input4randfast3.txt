@@ -1,0 +1,16 @@
+lap_start
+player_sleep 1 2000
+music_start
+umpire_sleep 700
+music_stop
+lap_stop
+lap_start
+music_start
+umpire_sleep 200000
+music_stop
+lap_stop
+lap_start
+music_start
+umpire_sleep 800000
+music_stop
+lap_stop

@@ -1,0 +1,160 @@
+crash> vm -p 1808
+
+PID: 1808   TASK: ffff8bc075cf62a0  CPU: 1   COMMAND: "sample"
+       MM               PGD          RSS    TOTAL_VM
+ffff8bc17493abc0  ffff8bc0f2826000   488k    4220k  
+      VMA           START       END     FLAGS FILE
+ffff8bc0f28df288     400000     401000 8000875 /root/sample
+VIRTUAL     PHYSICAL
+400000      b12b0000
+      VMA           START       END     FLAGS FILE
+ffff8bc0f28df360     600000     601000 8100871 /root/sample
+VIRTUAL     PHYSICAL
+600000      b1726000
+      VMA           START       END     FLAGS FILE
+ffff8bc0f28dfe58     601000     602000 8100873 /root/sample
+VIRTUAL     PHYSICAL
+601000      b1268000
+      VMA           START       END     FLAGS FILE
+ffff8bc0f28dfa20 7f4503731000 7f45038f4000 8000075 /usr/lib64/libc-2.17.so
+VIRTUAL     PHYSICAL
+7f4503731000  bbca2000
+7f4503732000  bbd73000
+7f4503733000  3584a000
+7f4503734000  36b37000
+7f4503735000  bbd18000
+
+
+
+crash> vm -p 1809
+PID: 1809   TASK: ffff8bc075cf0000  CPU: 0   COMMAND: "sample"
+       MM               PGD          RSS    TOTAL_VM
+ffff8bc17488f6c0  ffff8bc0f2900000   492k    4220k  
+      VMA           START       END     FLAGS FILE
+ffff8bc0f28d1510     400000     401000 8000875 /root/sample
+VIRTUAL     PHYSICAL
+400000      b12b0000
+      VMA           START       END     FLAGS FILE
+ffff8bc0f28d1000     600000     601000 8100871 /root/sample
+VIRTUAL     PHYSICAL
+600000      b148f000
+      VMA           START       END     FLAGS FILE
+ffff8bc0f28d1e58     601000     602000 8100873 /root/sample
+VIRTUAL     PHYSICAL
+601000      b122b000
+      VMA           START       END     FLAGS FILE
+ffff8bc0f28d1bd0 7f6816a3b000 7f6816bfe000 8000075 /usr/lib64/libc-2.17.so
+VIRTUAL     PHYSICAL
+7f6816a3b000  bbca2000
+7f6816a3c000  bbd73000
+7f6816a3d000  3584a000
+7f6816a3e000  36b37000
+7f6816a3f000  bbd18000
+
+
+[root@cs3523 ~]# pmap -x 1808
+1808:   ./sample
+Address           Kbytes     RSS   Dirty Mode  Mapping
+0000000000400000       4       4       0 r-x-- sample
+0000000000600000       4       4       4 r---- sample
+0000000000601000       4       4       4 rw--- sample
+00007f4503731000    1804     284       0 r-x-- libc-2.17.so
+00007f45038f4000    2048       0       0 ----- libc-2.17.so
+00007f4503af4000      16      16      16 r---- libc-2.17.so
+00007f4503af8000       8       8       8 rw--- libc-2.17.so
+00007f4503afa000      20      12      12 rw---   [ anon ]
+00007f4503aff000     136     108       0 r-x-- ld-2.17.so
+00007f4503d16000      12      12      12 rw---   [ anon ]
+00007f4503d1d000      12       8       8 rw---   [ anon ]
+00007f4503d20000       4       4       4 r---- ld-2.17.so
+00007f4503d21000       4       4       4 rw--- ld-2.17.so
+00007f4503d22000       4       4       4 rw---   [ anon ]
+00007ffdb4474000     132      12      12 rw---   [ stack ]
+00007ffdb44a0000       8       4       0 r-x--   [ anon ]
+ffffffffff600000       4       0       0 r-x--   [ anon ]
+---------------- ------- ------- ------- 
+total kB            4224     488      88
+
+
+[root@cs3523 ~]# pmap -x 1809
+1809:   ./sample
+Address           Kbytes     RSS   Dirty Mode  Mapping
+0000000000400000       4       4       0 r-x-- sample
+0000000000600000       4       4       4 r---- sample
+0000000000601000       4       4       4 rw--- sample
+00007f6816a3b000    1804     284       0 r-x-- libc-2.17.so
+00007f6816bfe000    2048       0       0 ----- libc-2.17.so
+00007f6816dfe000      16      16      16 r---- libc-2.17.so
+00007f6816e02000       8       8       8 rw--- libc-2.17.so
+00007f6816e04000      20      12      12 rw---   [ anon ]
+00007f6816e09000     136     108       0 r-x-- ld-2.17.so
+00007f6817020000      12      12      12 rw---   [ anon ]
+00007f6817027000      12       8       8 rw---   [ anon ]
+00007f681702a000       4       4       4 r---- ld-2.17.so
+00007f681702b000       4       4       4 rw--- ld-2.17.so
+00007f681702c000       4       4       4 rw---   [ anon ]
+00007fffad926000     132      16      16 rw---   [ stack ]
+00007fffad999000       8       4       0 r-x--   [ anon ]
+ffffffffff600000       4       0       0 r-x--   [ anon ]
+---------------- ------- ------- ------- 
+total kB            4224     492      92
+
+
+crash> vm -m 1809
+PID: 1809   TASK: ffff8bc075cf0000  CPU: 0   COMMAND: "sample"
+struct mm_struct {
+  mmap = 0xffff8bc0f28d1510, 
+  mm_rb = {
+    rb_node = 0xffff8bc0f28d1458
+  }, 
+  mmap_cache = 0xffff8bc0f28d1ca8, 
+  get_unmapped_area = 0xffffffffb6232180, 
+  unmap_area = 0xffffffffb63f9110, 
+  mmap_base = 140085039386624, 
+  mmap_legacy_base = 47547631001600, 
+  task_size = 140737488351232, 
+  cached_hole_size = 0, 
+  free_area_cache = 140085039386624, 
+  highest_vm_end = 140736105918464, 
+  pgd = 0xffff8bc0f2900000, 
+  mm_users = {
+    counter = 1
+  }, 
+  mm_count = {
+    counter = 1
+  }, 
+  nr_ptes = {
+
+
+crash> vm -m 1808
+PID: 1808   TASK: ffff8bc075cf62a0  CPU: 1   COMMAND: "sample"
+struct mm_struct {
+  mmap = 0xffff8bc0f28df288, 
+  mm_rb = {
+    rb_node = 0xffff8bc0f28df7b8
+  }, 
+  mmap_cache = 0xffff8bc0f28df6c0, 
+  get_unmapped_area = 0xffffffffb6232180, 
+  unmap_area = 0xffffffffb63f9110, 
+  mmap_base = 139934393577472, 
+  mmap_legacy_base = 47698276810752, 
+  task_size = 140737488351232, 
+  cached_hole_size = 0, 
+  free_area_cache = 139934393577472, 
+  highest_vm_end = 140727628210176, 
+  pgd = 0xffff8bc0f2826000, 
+  mm_users = {
+    counter = 1
+  }, 
+  mm_count = {
+    counter = 1
+  }, 
+  nr_ptes = {
+
+
+crash> ps 1808
+   PID    PPID  CPU       TASK        ST  %MEM     VSZ    RSS  COMM
+   1808   1793   1  ffff8bc075cf62a0  IN   0.0    4220    488  sample
+crash> ps 1809
+   PID    PPID  CPU       TASK        ST  %MEM     VSZ    RSS  COMM
+   1809   1654   0  ffff8bc075cf0000  IN   0.0    4220    492  sample

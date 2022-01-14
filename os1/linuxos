@@ -1,0 +1,128 @@
+PLAGIARISM STATEMENT :
+I certify that this assignment/report is my own work, based on my personal
+study and/or research and that I have acknowledged all material and sources
+used in its preparation, whether they be books, articles, reports, lecture notes,
+and any other kind of document, electronic or personal communication. I also
+certify that this assignment/report has not previously been submitted for
+assessment in any other course, except where specific permission has been granted
+from all course instructors involved, or at any other time in this course, and that I
+have not copied in part or whole or otherwise plagiarised the work of other
+students and/or persons. I pledge to uphold the principles of honesty and responsibility at CSE@IITH. In addition, I understand my responsibility to report honour violations by other students if I become aware of it.
+
+Name: JUPALLY SAI NISHITH
+Date: 30-11-2019
+Signature: JSN
+
+
+            Report On "Introduction to Linux"  Edx Course
+
+The Linux Foundation:
+
+Linux started evolving in 1991(created by Linus torvalds) and now the linux foundation 
+(organization for many open source projects)partners with leading tech giants to solve the hardest technology problems. Linux is everywhere right from from the smallest embedded devices to space shuttles. Linux is the largest and most influencive open source project ever. There lot of events which are managed by Linux foundation which happen around the world today,where different people colloborate their works and ideas.
+The three major Linux distributors are Debian,RHEL,SUSE and there are few other distributions which are not so common.
+
+The Linux Philosophy and Concepts:
+
+Linux is an operating system and at its core is kernel which communicates with hardware.Linux is constantly updated by loads and loads of linux developers out there.
+Linux was initially developed for Intel x86-based personal computers but soon extended for lot of other hardware platforms.Big tech giants like IBM and Oracle also started their support for Linux and began developing it since late 1990’s. Today,most of the servers are powered by Linux.(that’s the  measure of linux’s growth).
+
+Linux follows many things from UNIX operating system.
+
+There different distributions of linux OS available. Each distribution has a kernel(which is the core of operating system) and tools(to manage different tasks) developed individually by different distributors which together make a complete system.
+
+LINUX SYSTEM STARTUP & FILES:
+
+When a system is powered on,BIOS initializes the hardware and check for proper functioning of I/O devices(this process is called as POST{Post on Self Test}). BIOS is loaded from ROM chip.
+The control is then passed to the boot loader.CMOS(Complementary Metal Oxide Semiconductor) technology allows to keep track of system in case of no power also.
+The common boot loaders for Linux are GRUB and ISOLINUX. 
+A MBR(MAster boot record) is the info in 1st sector of memory device(HDD/SSD) that identifies where OS is located. The size of the MBR is just 512 bytes.Linux bootloaders allows us choose
+Among the set of operating systems installed on the PC.Once we have selected the required OS then, kernel of the selected operating system is loaded and control is passed to it.The default command shell is bash but lot more shells which are much more advanced are available.  The kernel off selected operating system in loaded into RAM and it then configures the memory and hardware of system.
+
+Then the kernel runs
+            /sbin/init
+This then is the initial process and we start all other processes required for the system to run. Init is not only to start the system but also to shut down the computer properly.
+But now a lot of new techniques evolved for process of booting.Systems with systemd boot and start faster than compared the system with init implementation.Because of parallelization techniques, multiple services can be initiated at the same time and hence we get considerable speed up.
+            /sbin/init -> /lib/systemd/systemd
+A partition(logical part of the disk) is continuous segment of disk and a file system is a method of storing or retrieving them on hard disk. Base folder where OS is stored is C:\ in Windows and / in Linux.Linux manages its files with something called as Filesystem hierarchy.Linux use / to separate the paths whereas  \ is used in Windows and all filesystems in Linux are case sensitive.
+
+
+
+GRAPHICAL INTERFACE:
+
+In Linux we have option to use GUI(Graphical user interface) or CLI(Command line interface).CLI is useful in case performing repetitive task but if we want to navigate around and do not remember all paths or details ,then GUI is best.
+
+In Linux desktop system,a display manager Loads X server,manage graphical logins and manages the display.If display manager fails to start up we can start it by logging on to text-mode console or just by using startx from command line.By default X display managers starts at the end of the boot process but if it fails then, the above methods can be used. Ubuntu,Fedora and many other distributions use GNOME Desktop Environment(for graphical interface).Apart from GNOME,KDE is also widely used.We make changes to default GUI provided with gnome-tweak-tool.
+
+SYSTEM CONFIGURATION WITH GUI:
+
+TIME CONFIG:
+Most Linux distributions use NTP(Network time protocol-most popular protocol for setting time via internet servers).
+
+NETWORK CONFIGURATION:
+A network manager was developed to maintain a uniformity across various distributions because the network configuration files have different formats and different locations in different distributions.It list all available networks and manages our connections.Wired network is by network manager via Dynamic Host Configuration Protocol (DHCP) after hardware interface and signal presence are detected.
+
+PACKAGES:
+We see term package in linux very often. Each package in Linux provides some functionality. Dpkg is underlying package manager in debian systems.RPM(developed by Red Hat) is also very popular package manager in Linux.
+
+
+COMMON APPLICATIONS:
+
+LibreOffice is a productivity application provided by many Linux distribution. It is an open source suite which evolved from OpenOffice.org.Also many tools for developers are provided by Linux. Advanced editors,compilers,debuggers are provided across many distributions.On other operating systems these should be installed  separately and could be costly and we don’t have such issues in Linux. 
+GIMP (GNU Image Manipulation Program) is an editing tool which can handle any image format,has many plugins and provides a lot of info regarding histograms and channels.
+
+COMMAND LINE:
+
+Linux relies heavily on command line tools and command line interfaces makes difficult tasks possible.CLI has many advantages over GUI.Any task can be accomplished using CLI.One key thing is that person who is using Linux mostly with GUI faces difficulty in changing to other distributions because graphical tools may vary among Linux distributions but the CUI is the same across all distributions.
+
+We  communicate between two programs in command line by using pipes( | ).
+$   Process1 | Process2
+The basic elements of command line are command,arguments,options. If we use the keyword Sudo in command,it allows the users to run programs with security privileges of super user. Linux offers various ways to switch between CLI and GUI and it varies from machine to machine like server to desktop.In newer system telinit command can turn GUI. Basic operations like logging in/out, power off,locating applications,accessing directories with basic commands.
+
+Using tree -d command we can get an idea of file system tree.Similarly commands like
+Cd,ls,pwd,etc are basic commands for tasks like changing directories,listing files in current directories,print working directory and we can add arguments to these command to do something different as per our requirements. Commands like cat, tac, less, tail, touch,  head are used to handle files.
+
+Stdin,stdout,stderr are three standard file streams always open for use when commands are executed.
+
+
+DOCUMENTATION:
+Any linux user, naive or experienced, will not always remember proper use of various Linux commands. So he/she needs to take help documentation.Documentation sources  includes the man pages,GNU info,help.
+
+MAN PAGES:
+The man pages are very helpful source of Linux documentation and used very often.In command line typing man with required command gives the information regarding that
+command.These man pages can be shared easily and also there a flexibility in sharing because these can be converted to PDFs and web pages also.
+
+            $ man -command
+
+We can search for man pages by topic ,by section which gives us flexibility in finding what we require.
+
+GNU INFO SYSTEM:
+It is an alternative to man and it is basically free form and has included support for linked subsections.It is close to man in many ways.
+
+            $ info <what is required>
+N,p,u are used navigate to next node,previous node, one node up in index.
+
+HELP:
+Whenever we require a glance or small description of certain command we can use the help command.
+
+            $ command --help
+
+All Linux desktops also have a graphical help application helpful to users who depend only on GUI and also to the users of CLI. Packaged Documentation and Online resources are also used for documentation.
+
+PROCESSES:
+
+A process is a live instance of program. It is different from a command or program. Process may be independent or may be working with some other processes via some communication mechanism. Processes use system resources(whatever is required like I/O devices). The OS is responsible for allocating a proper share of resources so that a single process doesn’t starve.
+
+Batch processes, Interactive processes,daemons are different types of processes. There are a lot of processes running and many might not be visible directly to the user itself. These processes run for a certain amount of time(called the Time Slice) and the scheduler decides to switch the cpu to some other process and remaining processes will be waiting for their call.
+
+A process(parent) can create a new process which is known as the child process. Sometimes child process gets finished but parent gets no signal from it,then the child is said to be in Zombie state.Each process has it’s ID. A process can be terminated by kill signal.Every process has thread by default and we create multiple threads for a process.
+pstree command displays processes running in a tree format and this gives a nice idea of parent and child relationship between processes.
+
+FEW COMMANDS:
+Ps command gives us information about processes which are running currently.
+To get real-time updates of a system, we can use ‘top’ command.This command also shows the performance of the system.
+Cron is a time based scheduling utility program.It is used to schedule tasks which are generally performed at regular intervals. Sleep command has time as argument and it suspends execution of process for the required amount of time.This way there are a lot of commands to control the processes and achieve required state.
+
+
+RESOURCES USED:
+https://www.edx.org/course/introduction-to-linux
